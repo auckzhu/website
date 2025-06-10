@@ -1,0 +1,486 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Sportsfit Landing Page</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;500;400&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --main: #2563eb;
+      --accent: #f8fafc;
+      --dark: #1e293b;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: 'Montserrat', Arial, sans-serif;
+      background: var(--accent);
+      color: var(--dark);
+    }
+    header {
+      background: #fff;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.03);
+    }
+    .nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      max-width: 1200px;
+      margin: auto;
+      padding: 1rem 2rem;
+    }
+    .brand {
+      color: var(--main);
+      font-weight: 700;
+      font-size: 2rem;
+      letter-spacing: 1px;
+    }
+    .nav-links {
+      display: flex;
+      gap: 2rem;
+    }
+    .nav-links a {
+      text-decoration: none;
+      color: var(--dark);
+      font-weight: 500;
+      transition: color .2s;
+    }
+    .nav-links a:hover { color: var(--main); }
+
+    .hero {
+      background: url('https://images.unsplash.com/photo-1518611012118-696072aa579a?auto=format&fit=crop&w=1200&q=80') center/cover no-repeat;
+      min-height: 75vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .hero-content {
+      background: rgba(255,255,255,0.88);
+      padding: 3rem 2rem;
+      border-radius: 1.5rem;
+      max-width: 480px;
+      text-align: center;
+      box-shadow: 0 8px 32px rgba(0,0,0,0.11);
+    }
+    .hero-content h1 {
+      font-size: 2.6rem;
+      font-weight: 700;
+      margin-bottom: 1rem;
+      color: var(--main);
+      line-height: 1.2;
+    }
+    .hero-content p {
+      margin-bottom: 1.5rem;
+      color: #444;
+      font-size: 1.2rem;
+    }
+    .cta-btn {
+      background: var(--main);
+      color: #fff;
+      padding: 0.9rem 2.4rem;
+      border: none;
+      border-radius: 2rem;
+      font-size: 1.1rem;
+      font-weight: bold;
+      cursor: pointer;
+      transition: background .2s;
+      text-decoration: none;
+      display: inline-block;
+      box-shadow: 0 2px 8px rgba(37,99,235,0.10);
+    }
+    .cta-btn:hover { background: #174db6; }
+
+    section {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 4rem 2rem;
+    }
+    section h2 {
+      text-align: center;
+      font-size: 2rem;
+      margin-bottom: 1rem;
+      color: var(--main);
+      font-weight: 700;
+      letter-spacing: .5px;
+    }
+    section > p.section-intro {
+      text-align: center;
+      color: #555;
+      max-width: 600px;
+      margin: 0 auto 2.5rem;
+      font-size: 1.1rem;
+    }
+
+    /* Features */
+    .features {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 2rem;
+      margin-top: 2rem;
+    }
+    .feature {
+      background: #fff;
+      flex: 1 1 220px;
+      max-width: 300px;
+      border-radius: 1rem;
+      box-shadow: 0 2px 14px rgba(0,0,0,0.07);
+      padding: 2rem 1.3rem;
+      text-align: center;
+      transition: box-shadow .2s;
+    }
+    .feature:hover { box-shadow: 0 8px 24px rgba(37,99,235,0.08); }
+    .feature-icon {
+      font-size: 2.5rem;
+      margin-bottom: 1rem;
+      color: var(--main);
+    }
+    .feature h4 {
+      font-weight: 600;
+      font-size: 1.1rem;
+      margin-bottom: 0.5rem;
+    }
+
+    /* Classes */
+    .classes-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 2rem;
+      justify-content: center;
+      margin-top: 2rem;
+    }
+    .class-card {
+      background: #fff;
+      border-radius: 1rem;
+      box-shadow: 0 2px 14px rgba(0,0,0,0.06);
+      padding: 1.5rem 1rem;
+      max-width: 280px;
+      text-align: center;
+      flex: 1 1 220px;
+    }
+    .class-card img {
+      width: 90px;
+      height: 90px;
+      border-radius: 100%;
+      object-fit: cover;
+      margin-bottom: 1rem;
+      border: 4px solid var(--accent);
+    }
+    .class-card h4 { font-weight: 600; margin-bottom: .6rem; }
+
+    /* Trainers */
+    .trainers-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 2rem;
+      justify-content: center;
+      margin-top: 2rem;
+    }
+    .trainer-card {
+      background: #f8fafc;
+      border-radius: 1rem;
+      box-shadow: 0 2px 14px rgba(37,99,235,0.07);
+      padding: 2rem 1rem;
+      text-align: center;
+      max-width: 220px;
+      flex: 1 1 160px;
+    }
+    .trainer-card img {
+      width: 75px;
+      height: 75px;
+      border-radius: 50%;
+      margin-bottom: .8rem;
+      object-fit: cover;
+    }
+    .trainer-name { font-weight: bold; margin-bottom: .2rem;}
+    .trainer-role { color: var(--main); font-size: .97rem; margin-bottom: .2rem; }
+
+    /* Pricing */
+    .pricing {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 2rem;
+      justify-content: center;
+      margin-top: 2.2rem;
+    }
+    .pricing-card {
+      background: #fff;
+      border-radius: 1.2rem;
+      box-shadow: 0 3px 18px rgba(37,99,235,0.08);
+      padding: 2.3rem 1.6rem;
+      max-width: 240px;
+      text-align: center;
+      border: 3px solid transparent;
+      transition: border .2s, box-shadow .2s;
+      flex: 1 1 160px;
+    }
+    .pricing-card.active {
+      border: 3px solid var(--main);
+      box-shadow: 0 8px 30px rgba(37,99,235,0.13);
+    }
+    .pricing-card h4 { font-weight: bold; font-size: 1.15rem; margin-bottom: .5rem; }
+    .pricing-price { font-size: 2.1rem; font-weight: 700; color: var(--main); margin-bottom: 1.2rem;}
+    .pricing-card ul { list-style: none; margin-bottom: 1.1rem;}
+    .pricing-card ul li { margin: .6rem 0; font-size: 1.03rem;}
+    .pricing-card .cta-btn { width: 100%; }
+
+    /* Testimonials */
+    .testimonials-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 2rem;
+      justify-content: center;
+      margin-top: 2rem;
+    }
+    .testimonial-card {
+      background: #f8fafc;
+      border-radius: 1rem;
+      box-shadow: 0 2px 12px rgba(37,99,235,0.06);
+      padding: 1.6rem 1rem;
+      max-width: 320px;
+      text-align: center;
+      font-style: italic;
+      flex: 1 1 220px;
+    }
+    .testimonial-name {
+      font-weight: bold;
+      color: var(--main);
+      margin-top: 1rem;
+      font-style: normal;
+    }
+
+    /* Contact */
+    .contact-section {
+      background: var(--main);
+      color: #fff;
+      border-radius: 2rem;
+      box-shadow: 0 2px 18px rgba(37,99,235,0.14);
+      max-width: 480px;
+      margin: 0 auto;
+      padding: 2.5rem 2rem;
+    }
+    .contact-section h2 { color: #fff; margin-bottom: 1rem;}
+    .contact-form {
+      display: flex;
+      flex-direction: column;
+      gap: 1.1rem;
+      margin-top: 1rem;
+    }
+    .contact-form input, .contact-form textarea {
+      padding: .9rem 1rem;
+      border-radius: .8rem;
+      border: none;
+      font-size: 1rem;
+      color: #222;
+      resize: none;
+    }
+    .contact-form textarea { min-height: 80px;}
+    .contact-form button {
+      background: #fff;
+      color: var(--main);
+      font-weight: 700;
+      border: none;
+      padding: 1rem 0;
+      border-radius: 2rem;
+      font-size: 1.07rem;
+      margin-top: .5rem;
+      cursor: pointer;
+      transition: background .2s, color .2s;
+    }
+    .contact-form button:hover {
+      background: #e0e8f9;
+      color: #1e293b;
+    }
+
+    /* Footer */
+    footer {
+      background: #1e293b;
+      color: #eee;
+      text-align: center;
+      padding: 2rem 0 1.2rem;
+      font-size: 1rem;
+      margin-top: 3rem;
+    }
+
+    /* Responsive */
+    @media (max-width: 1000px) {
+      .features, .classes-list, .trainers-list, .pricing, .testimonials-list { flex-wrap: wrap; }
+    }
+    @media (max-width: 780px) {
+      .features, .classes-list, .trainers-list, .pricing, .testimonials-list {
+        flex-direction: column;
+        align-items: center;
+      }
+      section, .nav { padding-left: 1rem; padding-right: 1rem;}
+    }
+    @media (max-width: 600px) {
+      .hero-content { padding: 1.7rem .7rem; }
+      section { padding: 2.5rem 0.4rem; }
+      .contact-section { padding: 1.3rem 0.5rem;}
+      .nav { flex-direction: column; gap: 0.7rem; }
+      .nav-links { gap: 1.2rem;}
+      .brand { font-size: 1.4rem;}
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <nav class="nav">
+      <div class="brand">Sportsfit</div>
+      <div class="nav-links">
+        <a href="#home">Home</a>
+        <a href="#classes">Classes</a>
+        <a href="#trainers">Trainers</a>
+        <a href="#pricing">Pricing</a>
+        <a href="#contact">Contact</a>
+      </div>
+    </nav>
+  </header>
+
+  <section class="hero" id="home">
+    <div class="hero-content">
+      <h1>Join The Best <br>Fitness Club in Town</h1>
+      <p>Achieve your fitness goals with world-class trainers, modern classes, and top facilities.</p>
+      <a href="#contact" class="cta-btn">Join Now</a>
+    </div>
+  </section>
+
+  <section>
+    <h2>Why Choose Sportsfit?</h2>
+    <p class="section-intro">We offer modern facilities, experienced trainers, and a supportive community to help you reach your fitness goals—whatever they are!</p>
+    <div class="features">
+      <div class="feature">
+        <div class="feature-icon">🏋️‍♂️</div>
+        <h4>Top Equipment</h4>
+        <p>State-of-the-art gym and studio facilities.</p>
+      </div>
+      <div class="feature">
+        <div class="feature-icon">💪</div>
+        <h4>Expert Trainers</h4>
+        <p>Certified coaches for all fitness levels and goals.</p>
+      </div>
+      <div class="feature">
+        <div class="feature-icon">🤝</div>
+        <h4>Supportive Community</h4>
+        <p>Friendly, motivating, and inclusive environment.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="classes">
+    <h2>Our Classes</h2>
+    <div class="classes-list">
+      <div class="class-card">
+        <img src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=400&q=80" alt="Yoga">
+        <h4>Yoga</h4>
+        <p>Improve flexibility & calm your mind.</p>
+      </div>
+      <div class="class-card">
+        <img src="https://images.unsplash.com/photo-1519864600265-abb258f7ff61?auto=format&fit=crop&w=400&q=80" alt="HIIT">
+        <h4>HIIT</h4>
+        <p>High-Intensity Interval Training for fast results.</p>
+      </div>
+      <div class="class-card">
+        <img src="https://images.unsplash.com/photo-1517960413843-0aee8e2d471c?auto=format&fit=crop&w=400&q=80" alt="Strength">
+        <h4>Strength</h4>
+        <p>Build muscle and gain strength.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="trainers">
+    <h2>Meet Our Trainers</h2>
+    <div class="trainers-list">
+      <div class="trainer-card">
+        <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="Alex">
+        <div class="trainer-name">Alex</div>
+        <div class="trainer-role">HIIT Coach</div>
+      </div>
+      <div class="trainer-card">
+        <img src="https://randomuser.me/api/portraits/women/44.jpg" alt="Maria">
+        <div class="trainer-name">Maria</div>
+        <div class="trainer-role">Yoga Expert</div>
+      </div>
+      <div class="trainer-card">
+        <img src="https://randomuser.me/api/portraits/men/56.jpg" alt="Sam">
+        <div class="trainer-name">Sam</div>
+        <div class="trainer-role">Strength Trainer</div>
+      </div>
+    </div>
+  </section>
+
+  <section id="pricing">
+    <h2>Membership Pricing</h2>
+    <div class="pricing">
+      <div class="pricing-card">
+        <h4>Basic</h4>
+        <div class="pricing-price">$29/mo</div>
+        <ul>
+          <li>✔️ Gym Access</li>
+          <li>✔️ Free Wi-Fi</li>
+        </ul>
+        <a href="#contact" class="cta-btn">Get Started</a>
+      </div>
+      <div class="pricing-card active">
+        <h4>Pro</h4>
+        <div class="pricing-price">$49/mo</div>
+        <ul>
+          <li>✔️ Everything in Basic</li>
+          <li>✔️ All Classes</li>
+          <li>✔️ Sauna Access</li>
+        </ul>
+        <a href="#contact" class="cta-btn">Get Started</a>
+      </div>
+      <div class="pricing-card">
+        <h4>Elite</h4>
+        <div class="pricing-price">$79/mo</div>
+        <ul>
+          <li>✔️ Everything in Pro</li>
+          <li>✔️ Personal Trainer</li>
+          <li>✔️ Diet Plan</li>
+        </ul>
+        <a href="#contact" class="cta-btn">Get Started</a>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h2>What Our Members Say</h2>
+    <div class="testimonials-list">
+      <div class="testimonial-card">
+        <p>“I've never felt better! Amazing trainers and great atmosphere.”</p>
+        <div class="testimonial-name">Lisa K.</div>
+      </div>
+      <div class="testimonial-card">
+        <p>“The group classes are super fun and challenging. Love Sportsfit!”</p>
+        <div class="testimonial-name">James W.</div>
+      </div>
+      <div class="testimonial-card">
+        <p>“The facilities and staff are top-notch. Highly recommend.”</p>
+        <div class="testimonial-name">Chloe T.</div>
+      </div>
+    </div>
+  </section>
+
+  <section id="contact">
+    <div class="contact-section">
+      <h2>Get in Touch</h2>
+      <form class="contact-form" autocomplete="off">
+        <input type="text" placeholder="Name" required>
+        <input type="email" placeholder="Email" required>
+        <textarea placeholder="Your message" required></textarea>
+        <button type="submit">Send Message</button>
+      </form>
+    </div>
+  </section>
+
+  <footer>
+    © 2025 Sportsfit. All Rights Reserved.
+  </footer>
+
+</body>
+</html>
